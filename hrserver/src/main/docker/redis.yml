@@ -1,0 +1,8 @@
+redis:
+  image: redis
+  container_name: vhr_redis
+  command: redis-server --requirepass 123@456
+  ports:
+    - "6379:6379"
+  volumes:
+    - ~/.docker_data/volumes/vhr/redis:/data

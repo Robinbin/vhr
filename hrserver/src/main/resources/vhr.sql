@@ -95,7 +95,7 @@ INSERT INTO `department` VALUES ('92', '运维部', '5', '.1.4.5.92', '1', '0');
 DROP TABLE IF EXISTS `employee`;
 CREATE TABLE `employee` (
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '员工编号',
-  `name` varchar(10) DEFAULT NULL COMMENT '员工姓名',
+  `name` varchar(20) DEFAULT NULL COMMENT '员工姓名',
   `gender` char(4) DEFAULT NULL COMMENT '性别',
   `birthday` date DEFAULT NULL COMMENT '出生日期',
   `idCard` char(18) DEFAULT NULL COMMENT '身份证号',
@@ -109,7 +109,7 @@ CREATE TABLE `employee` (
   `departmentId` int(11) DEFAULT NULL COMMENT '所属部门',
   `jobLevelId` int(11) DEFAULT NULL COMMENT '职称ID',
   `posId` int(11) DEFAULT NULL COMMENT '职位ID',
-  `engageForm` varchar(8) DEFAULT NULL COMMENT '聘用形式',
+  `engageForm` varchar(18) DEFAULT NULL COMMENT '聘用形式',
   `tiptopDegree` enum('博士','硕士','本科','大专','高中','初中','小学','其他') DEFAULT NULL COMMENT '最高学历',
   `specialty` varchar(32) DEFAULT NULL COMMENT '所属专业',
   `school` varchar(32) DEFAULT NULL COMMENT '毕业院校',
