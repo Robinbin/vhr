@@ -3,6 +3,7 @@ package org.sang.controller.salary;
 import org.sang.bean.Employee;
 import org.sang.bean.RespBean;
 import org.sang.bean.Salary;
+import org.sang.common.RespBeanUtils;
 import org.sang.service.EmpService;
 import org.sang.service.SalaryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,9 +30,9 @@ public class SalaryEmpController {
     @RequestMapping(value = "/", method = RequestMethod.PUT)
     public RespBean updateEmpSalary(Integer sid, Long eid) {
         if (salaryService.updateEmpSalary(sid, eid) == 1) {
-            return RespBean.ok("修改成功!");
+            return RespBeanUtils.MODIFY_SUCCESS;
         }
-        return RespBean.error("修改失败!");
+        return RespBeanUtils.MODIFY_ERROR;
     }
 
     @RequestMapping(value = "/salaries", method = RequestMethod.GET)

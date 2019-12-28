@@ -2,6 +2,7 @@ package org.sang.controller.salary;
 
 import org.sang.bean.RespBean;
 import org.sang.bean.Salary;
+import org.sang.common.RespBeanUtils;
 import org.sang.service.EmpService;
 import org.sang.service.SalaryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,9 +27,9 @@ public class SalaryController {
     @RequestMapping(value = "/salary", method = RequestMethod.POST)
     public RespBean addSalaryCfg(Salary salary) {
         if (salaryService.addSalary(salary) == 1) {
-            return RespBean.ok("添加成功!");
+            return RespBeanUtils.ADD_SUCCESS;
         }
-        return RespBean.error("添加失败!");
+        return RespBeanUtils.ADD_ERROR;
     }
 
     @RequestMapping(value = "/salary", method = RequestMethod.GET)
@@ -39,17 +40,17 @@ public class SalaryController {
     @RequestMapping(value = "/salary", method = RequestMethod.PUT)
     public RespBean updateSalary(Salary salary) {
         if (salaryService.updateSalary(salary) == 1) {
-            return RespBean.ok("更新成功!");
+            return RespBeanUtils.UPDATE_SUCCESS;
         }
-        return RespBean.error("更新失败!");
+        return RespBeanUtils.UPDATE_ERROR;
     }
 
     @RequestMapping(value = "/salary/{ids}", method = RequestMethod.DELETE)
     public RespBean deleteSalary(@PathVariable String ids) {
         if (salaryService.deleteSalary(ids) == 1) {
-            return RespBean.ok("删除成功!");
+            return RespBeanUtils.DELETE_SUCCESS;
         }
-        return RespBean.error("删除失败!");
+        return RespBeanUtils.DELETE_ERROR;
     }
 
 }

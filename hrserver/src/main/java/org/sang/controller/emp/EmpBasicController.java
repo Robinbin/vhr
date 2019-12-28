@@ -4,6 +4,7 @@ import org.sang.bean.Employee;
 import org.sang.bean.Position;
 import org.sang.bean.RespBean;
 import org.sang.common.EmailRunnable;
+import org.sang.common.RespBeanUtils;
 import org.sang.common.poi.PoiUtils;
 import org.sang.service.DepartmentService;
 import org.sang.service.EmpService;
@@ -70,25 +71,25 @@ public class EmpBasicController {
             }
             executorService.execute(new EmailRunnable(employee,
                     javaMailSender, templateEngine));
-            return RespBean.ok("添加成功!");
+            return RespBeanUtils.ADD_SUCCESS;
         }
-        return RespBean.error("添加失败!");
+        return RespBeanUtils.ADD_ERROR;
     }
 
     @RequestMapping(value = "/emp", method = RequestMethod.PUT)
     public RespBean updateEmp(Employee employee) {
         if (empService.updateEmp(employee) == 1) {
-            return RespBean.ok("更新成功!");
+            return RespBeanUtils.UPDATE_SUCCESS;
         }
-        return RespBean.error("更新失败!");
+        return RespBeanUtils.UPDATE_ERROR;
     }
 
     @RequestMapping(value = "/emp/{ids}", method = RequestMethod.DELETE)
     public RespBean deleteEmpById(@PathVariable String ids) {
         if (empService.deleteEmpById(ids)) {
-            return RespBean.ok("删除成功!");
+            return RespBeanUtils.DELETE_SUCCESS;
         }
-        return RespBean.error("删除失败!");
+        return RespBeanUtils.DELETE_ERROR;
     }
 
     @RequestMapping(value = "/emp", method = RequestMethod.GET)
@@ -101,10 +102,10 @@ public class EmpBasicController {
             Long departmentId, String beginDateScope) {
         Map<String, Object> map = new HashMap<>();
         List<Employee> employeeByPage = empService.getEmployeeByPage(page, size,
-                keywords,politicId, nationId, posId, jobLevelId, engageForm,
+                keywords, politicId, nationId, posId, jobLevelId, engageForm,
                 departmentId, beginDateScope);
         Long count = empService.getCountByKeywords(keywords, politicId, nationId,
-                posId,jobLevelId, engageForm, departmentId, beginDateScope);
+                posId, jobLevelId, engageForm, departmentId, beginDateScope);
         map.put("emps", employeeByPage);
         map.put("count", count);
         return map;
@@ -122,8 +123,8 @@ public class EmpBasicController {
                 departmentService.getAllDeps(), positionService.getAllPos(),
                 jobLevelService.getAllJobLevels());
         if (empService.addEmps(emps) == emps.size()) {
-            return RespBean.ok("导入成功!");
+            return RespBeanUtils.IMPORT_SUCCESS;
         }
-        return RespBean.error("导入失败!");
+        return RespBeanUtils.IMPORT_ERROR;
     }
 }

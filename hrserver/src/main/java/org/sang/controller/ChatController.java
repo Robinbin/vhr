@@ -4,6 +4,7 @@ import org.sang.bean.Hr;
 import org.sang.bean.MsgContent;
 import org.sang.bean.RespBean;
 import org.sang.bean.SysMsg;
+import org.sang.common.RespBeanUtils;
 import org.sang.service.HrService;
 import org.sang.service.SysMsgService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,9 +35,9 @@ public class ChatController {
     @RequestMapping(value = "/nf", method = RequestMethod.POST)
     public RespBean sendNf(MsgContent msg) {
         if (sysMsgService.sendMsg(msg)) {
-            return RespBean.ok("发送成功!");
+            return RespBeanUtils.SEND_SUCCESS;
         }
-        return RespBean.error("发送失败!");
+        return RespBeanUtils.SEND_ERROR;
     }
 
     @RequestMapping("/sysmsgs")

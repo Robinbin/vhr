@@ -2,6 +2,7 @@ package org.sang.controller.system;
 
 import org.sang.bean.Hr;
 import org.sang.bean.RespBean;
+import org.sang.common.RespBeanUtils;
 import org.sang.service.HrService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -28,25 +29,25 @@ public class SystemHrController {
     @RequestMapping(value = "/{hrId}", method = RequestMethod.DELETE)
     public RespBean deleteHr(@PathVariable Long hrId) {
         if (hrService.deleteHr(hrId) == 1) {
-            return RespBean.ok("删除成功!");
+            return RespBeanUtils.DELETE_SUCCESS;
         }
-        return RespBean.error("删除失败!");
+        return RespBeanUtils.DELETE_ERROR;
     }
 
     @RequestMapping(value = "/", method = RequestMethod.PUT)
     public RespBean updateHr(Hr hr) {
         if (hrService.updateHr(hr) == 1) {
-            return RespBean.ok("更新成功!");
+            return RespBeanUtils.UPDATE_SUCCESS;
         }
-        return RespBean.error("更新失败!");
+        return RespBeanUtils.UPDATE_ERROR;
     }
 
     @RequestMapping(value = "/roles", method = RequestMethod.PUT)
     public RespBean updateHrRoles(Long hrId, Long[] rids) {
         if (hrService.updateHrRoles(hrId, rids) == rids.length) {
-            return RespBean.ok("更新成功!");
+            return RespBeanUtils.UPDATE_SUCCESS;
         }
-        return RespBean.error("更新失败!");
+        return RespBeanUtils.UPDATE_ERROR;
     }
 
     @RequestMapping("/{keywords}")

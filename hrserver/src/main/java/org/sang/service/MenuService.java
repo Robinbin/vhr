@@ -5,7 +5,6 @@ import org.sang.common.HrUtils;
 import org.sang.mapper.MenuMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheConfig;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -21,8 +20,8 @@ public class MenuService {
     @Autowired
     MenuMapper menuMapper;
 
-//    @Cacheable(key = "#root.methodName")
-    public List<Menu> getAllMenu(){
+    //    @Cacheable(key = "#root.methodName")
+    public List<Menu> getAllMenu() {
         return menuMapper.getAllMenu();
     }
 
