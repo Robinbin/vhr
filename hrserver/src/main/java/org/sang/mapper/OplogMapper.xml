@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.sang.mapper.OplogMapper">
     <insert id="addOplog" parameterType="org.sang.bean.Oplog">
-        INSERT INTO oplog (hrid, operate, addDate) values(#{hrid}, #{operate}, #{addDate});
+        INSERT INTO oplog (hrid, operate, addDate) values(${oplog.hrid}, #{oplog.operate}, #{oplog.addDate});
     </insert>
 
     <select id="getAllOplog" resultType="org.sang.bean.Oplog">

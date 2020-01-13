@@ -14,12 +14,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
+import org.springframework.stereotype.Component;
 
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.Arrays;
 
 @Aspect
+@Component
 public class LoggingAspect {
     private final Logger log = LoggerFactory.getLogger(this.getClass());
 
@@ -44,9 +46,7 @@ public class LoggingAspect {
     /**
      * Pointcut that matches all Spring beans in the application's main packages.
      */
-    @Pointcut("within(org.sang.mapper..*)" +
-            " || within(org.sang.service..*)" +
-            " || within(org.sang.controller..*)")
+    @Pointcut("within(org.sang.controller..*)")
     public void applicationPackagePointcut() {
         // Method is empty as this is just a Pointcut, the implementations are in the advices.
     }
