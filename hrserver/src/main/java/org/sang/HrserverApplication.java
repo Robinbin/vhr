@@ -9,7 +9,6 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
 @SpringBootApplication
 @MapperScan("org.sang.mapper")
 @EnableCaching
-@EnableAspectJAutoProxy
 public class HrserverApplication {
 
     public static void main(String[] args) {

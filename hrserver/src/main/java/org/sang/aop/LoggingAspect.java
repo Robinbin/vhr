@@ -6,9 +6,6 @@ import org.aspectj.lang.annotation.AfterThrowing;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
-import org.sang.bean.Hr;
-import org.sang.bean.Oplog;
-import org.sang.common.HrUtils;
 import org.sang.service.OplogService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,8 +13,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
 
-import java.sql.Timestamp;
-import java.time.LocalDateTime;
 import java.util.Arrays;
 
 @Aspect
@@ -72,12 +67,8 @@ public class LoggingAspect {
      */
     @Around("applicationPackagePointcut()")
     public Object logAround(ProceedingJoinPoint joinPoint) throws Throwable {
-        Hr hr = HrUtils.getCurrentHr();
-        Oplog oplog = new Oplog();
-        oplog.setHrid(hr.getId());
-        oplog.setOperate("test");
-        oplog.setAddDate(Timestamp.valueOf(LocalDateTime.now()));
-        oplogService.addOplog(oplog);
+        oplogService.logCurrentOp();
+
         if (log.isDebugEnabled()) {
             log.debug("Enter: {}.{}() with argument[s] = {}", joinPoint.getSignature().getDeclaringTypeName(),
                     joinPoint.getSignature().getName(), Arrays.toString(joinPoint.getArgs()));
